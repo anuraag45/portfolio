@@ -5,73 +5,62 @@ interface BootSequenceProps {
   onComplete: () => void;
 }
 
+const BOOT_LINES = [
+  'ANURAAG_OS v4.16 BIOS INIT...',
+  'CPU: ANURAAG CORE i9 @ 3.60GHz (8 CORES DETECTED)',
+  'MEMORY REGISTER: 32768 MB OK',
+  'CHECKING SUBSYSTEMS...',
+  '-> AI_ENGINE: OK (OPENAI / ANTHROPIC / GEMINI READY)',
+  '-> BACKEND_STACK: OK (NODE / FASTAPI / POSTGRES READY)',
+  '-> HARDWARE_INTERFACE: OK (PCB TRACE MAPPING 100%)',
+  'SIGNAL LOCK CONFIRMED. POWERING ON INTERFACE...'
+];
+
 export const BootSequence: React.FC<BootSequenceProps> = ({ onComplete }) => {
   const [logs, setLogs] = useState<string[]>([]);
-  const [isDone, setIsDone] = useState(false);
-  const onCompleteRef = useRef(onComplete);
+  const [fading, setFading] = useState(false);
+  const doneRef = useRef(false);
 
-  useEffect(() => {
-    onCompleteRef.current = onComplete;
-  }, [onComplete]);
-
-  const bootLines = [
-    'ANURAAG_OS v4.16 BIOS INIT...',
-    'CPU: ANURAAG CORE i9 @ 3.60GHz (8 CORES DETECTED)',
-    'MEMORY REGISTER: 32768 MB OK',
-    'CHECKING SUBSYSTEMS...',
-    '-> AI_ENGINE: OK (OPENAI / ANTHROPIC / GEMINI READY)',
-    '-> BACKEND_STACK: OK (NODE / FASTAPI / POSTGRES READY)',
-    '-> HARDWARE_INTERFACE: OK (PCB TRACE MAPPING 100%)',
-    'SIGNAL LOCK CONFIRMED. POWERING ON INTERFACE...'
-  ];
+  const finish = () => {
+    if (doneRef.current) return;
+    doneRef.current = true;
+    setFading(true);
+    setTimeout(() => {
+      onComplete();
+    }, 350);
+  };
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) {
-      onCompleteRef.current();
+      onComplete();
       return;
     }
 
-    let timer1: ReturnType<typeof setTimeout>;
-    let timer2: ReturnType<typeof setTimeout>;
-
-    let currentIndex = 0;
+    let idx = 0;
     const interval = setInterval(() => {
-      if (currentIndex < bootLines.length) {
-        setLogs((prev) => [...prev, bootLines[currentIndex]]);
-        currentIndex++;
+      if (idx < BOOT_LINES.length) {
+        const line = BOOT_LINES[idx];
+        idx++;
+        setLogs((prev) => [...prev, line]);
       } else {
         clearInterval(interval);
-        timer1 = setTimeout(() => {
-          setIsDone(true);
-          timer2 = setTimeout(() => {
-            onCompleteRef.current();
-          }, 400);
-        }, 300);
+        const t = setTimeout(finish, 300);
+        return () => clearTimeout(t);
       }
-    }, 140);
+    }, 130);
 
-    const handleSkip = () => {
-      clearInterval(interval);
-      clearTimeout(timer1);
-      clearTimeout(timer2);
-      setIsDone(true);
-      onCompleteRef.current();
-    };
-
-    const handleKeyDown = (e: KeyboardEvent) => {
+    const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        handleSkip();
+        clearInterval(interval);
+        finish();
       }
     };
-
-    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('keydown', onKey);
 
     return () => {
       clearInterval(interval);
-      clearTimeout(timer1);
-      clearTimeout(timer2);
-      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('keydown', onKey);
     };
   }, []);
 
@@ -87,9 +76,9 @@ export const BootSequence: React.FC<BootSequenceProps> = ({ onComplete }) => {
         justifyContent: 'center',
         alignItems: 'center',
         padding: '2rem',
-        opacity: isDone ? 0 : 1,
-        pointerEvents: isDone ? 'none' : 'auto',
-        transition: 'opacity 0.4s ease',
+        opacity: fading ? 0 : 1,
+        pointerEvents: fading ? 'none' : 'auto',
+        transition: 'opacity 0.35s ease',
         fontFamily: 'var(--font-mono)'
       }}
     >
@@ -121,10 +110,7 @@ export const BootSequence: React.FC<BootSequenceProps> = ({ onComplete }) => {
             </span>
           </div>
           <button
-            onClick={() => {
-              setIsDone(true);
-              onCompleteRef.current();
-            }}
+            onClick={finish}
             style={{
               background: 'transparent',
               border: '1px solid var(--border-hardware-bright)',
@@ -157,7 +143,7 @@ export const BootSequence: React.FC<BootSequenceProps> = ({ onComplete }) => {
               </span>
             </div>
           ))}
-          {logs.length < bootLines.length && (
+          {logs.length < BOOT_LINES.length && (
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginTop: '0.2rem' }}>
               <span style={{ color: 'var(--phosphor-amber)' }}>■</span>
               <span style={{ color: 'var(--text-dim)' }}>Initializing hardware bus...</span>
@@ -186,4 +172,3 @@ export const BootSequence: React.FC<BootSequenceProps> = ({ onComplete }) => {
     </div>
   );
 };
-
