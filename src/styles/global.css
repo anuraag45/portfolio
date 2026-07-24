@@ -1,0 +1,176 @@
+@import './variables.css';
+@import './typography.css';
+
+/* Hardware Reset & Base Layout */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background-color: var(--bg-dark);
+}
+
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  overflow-x: hidden;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* PCB Chamfered Box Corners */
+.hw-box {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-hardware);
+  position: relative;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Sharp IC Chip Chamfered Corner Utility */
+.hw-chamfer {
+  clip-path: polygon(
+    0 8px,
+    8px 0,
+    100% 0,
+    100% calc(100% - 8px),
+    calc(100% - 8px) 100%,
+    0 100%
+  );
+}
+
+.hw-box-amber:hover {
+  border-color: var(--phosphor-amber);
+  box-shadow: 0 0 15px var(--phosphor-amber-glow);
+}
+
+.hw-box-cyan:hover {
+  border-color: var(--oscilloscope-cyan);
+  box-shadow: 0 0 15px var(--oscilloscope-cyan-glow);
+}
+
+/* Silkscreen Pin Dot Indicator */
+.via-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--phosphor-amber);
+  box-shadow: 0 0 6px var(--phosphor-amber);
+  display: inline-block;
+}
+
+.via-dot-cyan {
+  background-color: var(--oscilloscope-cyan);
+  box-shadow: 0 0 6px var(--oscilloscope-cyan);
+}
+
+/* Circuit Grid Pattern Background */
+.pcb-grid-bg {
+  background-image: 
+    radial-gradient(circle at 1px 1px, rgba(255, 176, 0, 0.08) 1px, transparent 0),
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 24px 24px, 48px 48px, 48px 48px;
+}
+
+/* Hardware Tactile Button */
+.hw-btn {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.65rem 1.25rem;
+  background-color: var(--bg-surface-elevated);
+  border: 1px solid var(--border-hardware-bright);
+  color: var(--text-main);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.hw-btn:hover {
+  background-color: var(--bg-surface-hover);
+  border-color: var(--phosphor-amber);
+  color: var(--phosphor-amber);
+  box-shadow: 0 0 12px var(--phosphor-amber-glow);
+}
+
+.hw-btn:active {
+  transform: translateY(1px);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hw-btn-primary {
+  background-color: var(--phosphor-amber);
+  border-color: var(--phosphor-amber);
+  color: #0B0F12;
+}
+
+.hw-btn-primary:hover {
+  background-color: #FFA000;
+  border-color: #FFA000;
+  color: #000000;
+  box-shadow: 0 0 16px rgba(255, 176, 0, 0.4);
+}
+
+.hw-btn-cyan {
+  background-color: rgba(0, 229, 255, 0.1);
+  border-color: var(--oscilloscope-cyan);
+  color: var(--oscilloscope-cyan);
+}
+
+.hw-btn-cyan:hover {
+  background-color: var(--oscilloscope-cyan);
+  color: #0B0F12;
+  box-shadow: 0 0 16px rgba(0, 229, 255, 0.4);
+}
+
+/* Custom Hardware Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+  border-left: 1px solid var(--border-hardware);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-hardware-bright);
+  border-radius: 0px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--phosphor-amber);
+}
+
+/* Prefers Reduced Motion Guardrail */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,48 @@
+:root {
+  /* Silicon Base Palette - Dark Near-Black Hardware Atmosphere */
+  --bg-dark: #0B0F12;
+  --bg-surface: #11161B;
+  --bg-surface-elevated: #182026;
+  --bg-surface-hover: #1E2830;
+  
+  /* PCB Trace & Grid Colors */
+  --trace-muted: #242D35;
+  --trace-copper: #3D3220;
+  --trace-copper-bright: #7A5C1E;
+  --trace-active: #FFB000;
+  --trace-cyan: #00E5FF;
+  
+  /* Disciplined Phosphor Accents */
+  --phosphor-amber: #FFB000;
+  --phosphor-amber-glow: rgba(255, 176, 0, 0.15);
+  --phosphor-amber-dim: #996A00;
+  
+  --oscilloscope-cyan: #00E5FF;
+  --oscilloscope-cyan-glow: rgba(0, 229, 255, 0.15);
+  --oscilloscope-cyan-dim: #008899;
+
+  --signal-red: #FF3366;
+  --signal-green: #00E676;
+  
+  /* Silkscreen Text & Labeling Hierarchy */
+  --text-main: #E2E8F0;
+  --text-muted: #94A3B8;
+  --text-dim: #64748B;
+  --text-amber: #FFB000;
+  --text-cyan: #00E5FF;
+
+  /* Hardware Borders & Grid Systems */
+  --border-hardware: #1E293B;
+  --border-hardware-bright: #334155;
+  --border-amber: rgba(255, 176, 0, 0.4);
+  --border-cyan: rgba(0, 229, 255, 0.4);
+
+  /* Typography Families */
+  --font-mono: 'Space Mono', monospace;
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-heading: 'Syne', sans-serif;
+
+  /* Spatial Grid System */
+  --radius-chamfer: 2px;
+  --header-height: 4.5rem;
+}
