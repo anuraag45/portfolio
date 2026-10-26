@@ -11,7 +11,7 @@ export interface ProjectItem {
   techStack: string[];
   githubUrl?: string;
   demoUrl?: string;
-  circuitType: 'meridian' | 'aegis' | 'docflow' | 'inventory';
+  circuitType: 'whatsapp' | 'interview' | 'docflow' | 'inventory';
 }
 
 export interface ExperienceItem {

@@ -83,7 +83,7 @@ export const Hero: React.FC = () => {
                 marginBottom: '2.5rem'
               }}
             >
-              {HERO_DATA.tagline} Focused on multi-tier decision engines, dataclass artifact parsers, asynchronous OCR pipelines, and strict relational system design.
+              {HERO_DATA.tagline} Focused on conversational AI automation, adaptive LLM interview evaluation engines, asynchronous OCR pipelines, and resilient distributed architectures.
             </p>
 
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', marginBottom: '3rem' }}>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Command } from 'cmdk';
-import { Search, ArrowRight, CornerDownLeft, X, Code, Shield, FileText, Cpu, Mail } from 'lucide-react';
+import { Search, ArrowRight, CornerDownLeft, X, MessageSquare, Bot, FileText, Cpu, Mail } from 'lucide-react';
 import { CONTACT_DATA } from '../data/content';
 
 interface CommandPaletteProps {
@@ -117,7 +117,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose 
             <Command.Group heading="Flagship Systems" style={{ padding: '0.5rem 1.25rem 0.25rem 1.25rem', fontSize: '0.65rem', fontFamily: 'var(--font-mono)', color: 'var(--phosphor-amber)', textTransform: 'uppercase' }}>
               <Command.Item
                 onSelect={() => {
-                  window.location.hash = 'meridian';
+                  window.location.hash = 'custom-whatsapp-automation';
                   onClose();
                 }}
                 style={{
@@ -134,15 +134,15 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose 
                 }}
               >
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                  <Shield size={16} color="var(--phosphor-amber)" />
-                  <span>Meridian AI Code Review & Governance Engine</span>
+                  <MessageSquare size={16} color="var(--signal-green)" />
+                  <span>Custom WhatsApp Conversational Automation Platform</span>
                 </div>
                 <CornerDownLeft size={12} color="var(--text-dim)" />
               </Command.Item>
 
               <Command.Item
                 onSelect={() => {
-                  window.location.hash = 'aegis-erp';
+                  window.location.hash = 'i-love-interviews';
                   onClose();
                 }}
                 style={{
@@ -159,8 +159,8 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose 
                 }}
               >
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                  <Code size={16} color="var(--oscilloscope-cyan)" />
-                  <span>AegisERP Structured Navy Redesign Inspector</span>
+                  <Bot size={16} color="var(--phosphor-amber)" />
+                  <span>I Love Interviews AI Assessment &amp; Mock Engine</span>
                 </div>
                 <CornerDownLeft size={12} color="var(--text-dim)" />
               </Command.Item>
@@ -282,7 +282,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose 
               >
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                   <ArrowRight size={16} />
-                  <span>Open GitHub Profile (Anuraag-06)</span>
+                  <span>Open GitHub Profile (anuraag45)</span>
                 </div>
                 <CornerDownLeft size={12} color="var(--text-dim)" />
               </Command.Item>

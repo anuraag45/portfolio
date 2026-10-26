@@ -9,11 +9,11 @@ import { SubsystemMatrix } from './components/SubsystemMatrix';
 import { EducationContact } from './components/EducationContact';
 import { TelemetryFooter } from './components/TelemetryFooter';
 
-const MeridianAuditEngine = lazy(() =>
-  import('./components/MeridianAuditEngine').then((m) => ({ default: m.MeridianAuditEngine }))
+const WhatsAppAutomationSimulator = lazy(() =>
+  import('./components/WhatsAppAutomationSimulator').then((m) => ({ default: m.WhatsAppAutomationSimulator }))
 );
-const AegisRedesignInspector = lazy(() =>
-  import('./components/AegisRedesignInspector').then((m) => ({ default: m.AegisRedesignInspector }))
+const ILoveInterviewsEngine = lazy(() =>
+  import('./components/ILoveInterviewsEngine').then((m) => ({ default: m.ILoveInterviewsEngine }))
 );
 const DocFlowPipeline = lazy(() =>
   import('./components/DocFlowPipeline').then((m) => ({ default: m.DocFlowPipeline }))
@@ -75,7 +75,7 @@ export const App: React.FC = () => {
                 Deployed AI &amp; Full Stack Systems
               </h2>
               <p style={{ color: 'var(--text-muted)', fontSize: '1.05rem', maxWidth: '720px' }}>
-                Deep technical case studies detailing Meridian's active audit governance, AegisERP's Structured Navy redesign, DocFlow's async OCR pipeline, and CoreInventory's stock ledger.
+                Deep technical case studies detailing Custom WhatsApp Automation's webhook pipeline, I Love Interviews' AI rubric assessment engine, DocFlow's async OCR pipeline, and CoreInventory's stock ledger.
               </p>
             </div>
 
@@ -86,8 +86,8 @@ export const App: React.FC = () => {
                 </div>
               }
             >
-              <MeridianAuditEngine />
-              <AegisRedesignInspector />
+              <WhatsAppAutomationSimulator />
+              <ILoveInterviewsEngine />
               <DocFlowPipeline />
               <CoreInventoryLedgerSpec />
             </Suspense>

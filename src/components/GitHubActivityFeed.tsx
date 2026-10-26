@@ -17,20 +17,20 @@ export const GitHubActivityFeed: React.FC = () => {
 
   const fallbackRepos: GitHubRepo[] = [
     {
-      name: 'Meridian-Engine',
-      description: 'AI Code Review & Governance Platform with 3-tier decision engine.',
-      stars: 12,
-      forks: 3,
+      name: 'WhatsApp-Automation-Engine',
+      description: 'Production conversational AI webhook pipeline using WhatsApp Cloud API and Gemini.',
+      stars: 18,
+      forks: 5,
       language: 'TypeScript',
-      url: 'https://github.com/Anuraag-06'
+      url: 'https://github.com/anuraag45'
     },
     {
-      name: 'AegisERP-Core',
-      description: 'Enterprise ERP system with RBAC, MFA, and 8+ operational modules.',
-      stars: 8,
-      forks: 2,
-      language: 'JavaScript',
-      url: 'https://github.com/Anuraag-06'
+      name: 'ILoveInterviews-Platform',
+      description: 'AI-driven adaptive mock interview platform with real-time rubric scoring.',
+      stars: 24,
+      forks: 6,
+      language: 'TypeScript',
+      url: 'https://github.com/anuraag45/I-love-Interviews'
     },
     {
       name: 'DocFlow-OCR',
@@ -38,14 +38,14 @@ export const GitHubActivityFeed: React.FC = () => {
       stars: 15,
       forks: 4,
       language: 'Python',
-      url: 'https://github.com/Anuraag-06'
+      url: 'https://github.com/anuraag45'
     }
   ];
 
   useEffect(() => {
     const fetchGitHubData = async () => {
       try {
-        const response = await fetch('https://api.github.com/users/Anuraag-06/repos?sort=updated&per_page=4');
+        const response = await fetch('https://api.github.com/users/anuraag45/repos?sort=updated&per_page=4');
         if (response.ok) {
           const data = await response.json();
           if (Array.isArray(data) && data.length > 0) {
@@ -90,7 +90,7 @@ export const GitHubActivityFeed: React.FC = () => {
     >
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem', borderBottom: '1px solid var(--border-hardware)', paddingBottom: '0.75rem' }}>
         <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.85rem', color: 'var(--phosphor-amber)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          <Activity size={16} /> LIVE GITHUB PUBLIC TELEMETRY (@Anuraag-06)
+          <Activity size={16} /> LIVE GITHUB PUBLIC TELEMETRY (@anuraag45)
         </div>
 
         <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.7rem', color: status === 'LIVE' ? 'var(--signal-green)' : 'var(--phosphor-amber)', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
